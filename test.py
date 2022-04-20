@@ -16,7 +16,9 @@ def main():
         date = datetime.now().strftime("%Y%m%d_%H%M%S")
         path = "./" + date + ".jpg"
         cv2.imwrite(path, frame)
-    
+
+
+    #key controll and video capture     
     cap.release()
     cv2.destroyAllWindows()
     return
