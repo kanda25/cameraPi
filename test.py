@@ -21,7 +21,7 @@ def main():
     #key controll and video capture     
     cap.release()
     cv2.destroyAllWindows()
-    return
+    return 0
 
 if __name__ == "__main__":
     main()
