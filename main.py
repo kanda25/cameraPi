@@ -1,22 +1,31 @@
 import cv2
-import datatime
+from datetime import datetime
 
-dt_now = datatime.datatime.now()
+import capture_jpg
 
-camera = cv2.VideoCaputure(0)
+DEV_ID = 0
 
-while True:
-    ret, frame = camera.read();
-    if not ret:
-        print("ret error")
-        break
+WIDTH = 640
+HEIGHT = 480
+FPS = 5
+REC_SEC = 10
+
+def main():
+    cap = cv2.VideoCapture(DEV_ID)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)
+    cap.set(cv2.cv2_CAP_PROR_FPS, FPS)
     
-    cv2.imshow("Frame", frame)
-    key = cv2.waitkey(1)#1s wait
-    
-    #if Esc push shut down screen
-    if key = 27:
-        break
-    
-    camera.release()
+    ret, frame = cap.read()
+    if ret:
+        date = datetime.now().strftime("%Y%m%d_%H%M%S")
+        path = "./" + date + ".jpg"
+        cv2.imwrite(path, frame)
+
+    #key controll and video capture     
+    cap.release()
     cv2.destroyAllWindows()
+    return 0
+
+if __name__ == "__main__":
+    main()
